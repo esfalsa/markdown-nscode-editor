@@ -25,6 +25,8 @@ export default function Home() {
 
   const nscode = String(file);
 
+  const [copyButtonText, setCopyButtonText] = useState("Copy");
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8 md:p-16">
       <div className="flex h-full w-full flex-1 flex-col space-y-4 md:flex-row md:space-x-8 md:space-y-0">
@@ -39,7 +41,22 @@ export default function Home() {
           />
         </div>
         <div className="flex flex-1 flex-col">
-          <h2 className="text-xl font-bold">NScode</h2>
+          <div className="flex flex-row justify-between">
+            <h2 className="text-xl font-bold">NScode</h2>
+            <button
+              type="button"
+              className="text-blue-500"
+              onClick={async (e) => {
+                await navigator.clipboard.writeText(nscode);
+                setCopyButtonText("Copied!");
+                setTimeout(() => {
+                  setCopyButtonText("Copy");
+                }, 2000);
+              }}
+            >
+              {copyButtonText}
+            </button>
+          </div>
           <textarea
             name="nscode"
             id="nscode"
