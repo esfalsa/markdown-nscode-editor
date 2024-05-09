@@ -46,7 +46,7 @@ export default function Home() {
             <button
               type="button"
               className="text-blue-500"
-              onClick={async (e) => {
+              onClick={async () => {
                 await navigator.clipboard.writeText(nscode);
                 setCopyButtonText("Copied!");
                 setTimeout(() => {
